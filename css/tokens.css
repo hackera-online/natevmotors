@@ -1,0 +1,115 @@
+/* =====================================================================
+   BM Auto Group – ДИЗАЙН ТОКЕНИ
+   Единственото място, където се менят цветове, шрифтове, радиуси, сенки.
+   css/style.css ползва само var(--…). Зарежда се ПРЕДИ style.css.
+
+   Ниво 1: суров токен    --color-gold, --color-graphite …   (стойности)
+   Ниво 2: семантичен     --bg, --fg, --accent, --surface …  (за какво служи)
+   Нощният режим пренарежда САМО ниво 2 – суровите цветове не се пипат.
+   ===================================================================== */
+
+/* ---------- Ниво 1: суровите стойности (общи за двата режима) ---------- */
+:root {
+  /* Бранд */
+  --color-gold: #D4AF37;
+  --color-gold-light: #E8CB6A;
+  --color-gold-hover: #B8932A;
+  --color-gold-deep: #A9831F;
+  --color-graphite: #1E2022;
+  --color-graphite-deep: #15171a;
+  --color-navy: #0F2C59;
+  --color-navy-hover: #16407F;
+  --color-navy-line: #2D4A7A;
+
+  /* Системни */
+  --color-white: #ffffff;
+  --color-bg: #F8F9FA;
+  --color-bg-alt: #EEF1F5;
+  --color-text: #1E2022;
+  --color-text-muted: #5B6470;
+  --color-border: #D9DEE6;
+  --color-footer-text: #E6EAF0;
+  --color-success: #2f8f5b;
+
+  /* Шрифтове */
+  --font-sans: "Manrope", "Segoe UI", Arial, Helvetica, sans-serif;
+  --font-head: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-logo: "Oswald", "Arial Narrow", "Roboto Condensed", Impact, sans-serif;
+
+  /* Геометрия */
+  --container-max: 1200px;
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --section: clamp(3rem, 8vw, 6rem);
+  --header-bar-h: 44px;
+  --radius-btn: 4px;
+  --radius-card: 10px;
+  --radius-pill: 999px;
+
+  /* Сенки и движение */
+  --shadow-color: rgba(15, 44, 89, .28);
+  --shadow-subtle: 0 22px 44px -28px var(--shadow);   /* --shadow е семантичен и се сменя в нощен режим */
+  --shadow-hover: 0 30px 56px -28px var(--shadow);
+  --transition: .25s;
+  --gold-grad: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold) 48%, var(--color-gold-hover) 100%);
+}
+@media (min-width: 1536px) { :root { --container-max: 1320px; } }
+@media (min-width: 1920px) { :root { --container-max: 1440px; } }
+
+/* ---------- Ниво 2: семантични токени – ДЕН (по подразбиране) ---------- */
+:root {
+  --yellow: var(--color-gold);
+  --yellow-press: var(--color-gold-hover);
+  --green: var(--color-success);
+
+  --bg: var(--color-bg);
+  --fg: var(--color-text);
+  --muted: var(--color-text-muted);
+  --surface: var(--color-white);
+  --surface-alt: var(--color-bg-alt);
+  --line: var(--color-border);
+  --shadow: var(--shadow-color);
+
+  --hero-bg: var(--color-graphite);
+  --hero-fg: var(--color-bg);
+  --accent: var(--color-gold);
+  --accent-press: var(--color-gold-hover);
+  --on-accent: var(--color-graphite);
+  --btn2-bg: var(--color-navy);
+  --btn2-fg: var(--color-bg);
+  --btn2-line: var(--color-navy);
+  --btn2-shadow: rgba(0, 0, 0, .4);
+  --invert-bg: var(--color-navy);
+  --invert-fg: var(--color-bg);
+  --invert-accent: var(--color-gold-light);
+  --logo-bg: transparent;
+  --logo-fg: var(--fg);
+  --footer-bg: var(--color-graphite);
+  --footer-fg: var(--color-footer-text);
+  --focus-ring: rgba(212, 175, 55, .55);
+
+  --font: var(--font-sans);
+  --border: 1px solid var(--line);
+  --r-btn: var(--radius-btn);
+  --r-card: var(--radius-card);
+  --wrap: var(--container-max);
+  --bar-h: var(--header-bar-h);
+}
+
+/* ---------- Ниво 2: семантични токени – НОЩ ---------- */
+:root[data-theme="night"] {
+  --bg: var(--color-graphite);
+  --fg: var(--color-bg);
+  --muted: #A9B2BF;
+  --surface: #262A2E;
+  --surface-alt: #1A1C1E;
+  --line: rgba(212, 175, 55, .28);
+  --shadow: rgba(0, 0, 0, .75);
+
+  --hero-bg: var(--color-graphite);
+  --hero-fg: var(--color-gold-light);
+  --btn2-line: var(--color-navy-line);
+  --btn2-shadow: rgba(0, 0, 0, .6);
+  --logo-fg: var(--color-bg);
+  --footer-fg: #fff;
+  --focus-ring: var(--color-gold);
+}

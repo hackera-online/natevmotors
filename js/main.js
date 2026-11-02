@@ -2,15 +2,19 @@
 (function () {
   "use strict";
 
+  // Всички настройки идват от data/site.js (редактират се от /admin/).
+  var SITE = window.SITE || {};
+  var B = SITE.booking || {};
+  var C = SITE.contact || {};
+  var BRAND = (SITE.brand && SITE.brand.name) || "BM Auto Group";
+  var PHONE = C.phone || "";
   var CONFIG = {
-    // ЗА ПОДМЯНА: адрес, към който се изпраща заявката (Formspree, Cloudflare Worker и др.).
     // Получава POST с JSON: { name, phone, service, date, time, message }.
-    // Ако е празно, заявката се копира в клипборда и се отваря Viber чат със сервиза.
-    endpoint: "",
-    viber: "viber://chat?number=%2B359897502285",
-    // ЗА ПОДМЯНА: свободни часове
-    slots: ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
-    closedWeekdays: [0]   // 0 = неделя. Празен масив [] = работи всеки ден
+    // Ако е празно, заявката се копира в клипборда и се отваря Viber чат.
+    endpoint: B.endpoint || "",
+    viber: C.viber ? "viber://chat?number=" + encodeURIComponent(String(C.viber).replace(/[^\d+]/g, "")) : "",
+    slots: Array.isArray(B.slots) && B.slots.length ? B.slots : ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+    closedWeekdays: Array.isArray(B.closedWeekdays) ? B.closedWeekdays : [0]   // 0 = неделя
   };
 
   var yr = document.getElementById("year");
@@ -65,7 +69,7 @@
   }
 
   function summary(d) {
-    return "Заявка за час – NatevMotors\n" +
+    return "Заявка за час – " + BRAND + "\n" +
       "Име: " + d.name + "\nТелефон: " + d.phone + "\nУслуга: " + d.service +
       "\nДата: " + d.date + " " + d.time + (d.message ? "\nБележка: " + d.message : "");
   }
@@ -88,8 +92,12 @@
     if (!CONFIG.endpoint) {
       // резервен вариант, докато няма сървър за приемане
       var text = summary(d);
+      if (!CONFIG.viber) {
+        setStatus("Заявката не може да бъде изпратена онлайн. Моля, обадете се на " + PHONE + ".", "err");
+        return;
+      }
       if (navigator.clipboard) { navigator.clipboard.writeText(text).catch(function () {}); }
-      setStatus("Заявката е копирана. Поставете я във Viber чата, който се отваря, или се обадете на 089 750 2285.", "ok");
+      setStatus("Заявката е копирана. Поставете я във Viber чата, който се отваря, или се обадете на " + PHONE + ".", "ok");
       window.location.href = CONFIG.viber;
       return;
     }
@@ -104,7 +112,7 @@
       form.reset();
       setStatus("Благодарим! Заявката е приета – ще се свържем с вас за потвърждение.", "ok");
     }).catch(function () {
-      setStatus("Грешка при изпращане. Моля, обадете се на 089 750 2285.", "err");
+      setStatus("Грешка при изпращане. Моля, обадете се на " + PHONE + ".", "err");
     });
   });
 })();
@@ -125,7 +133,10 @@
   });
 
   Array.prototype.forEach.call(document.querySelectorAll(".feedback"), function (card) {
-    function toggle() { card.classList.toggle("is-open"); }
+    function toggle() {
+      var o = card.classList.toggle("is-open");
+      card.setAttribute("aria-expanded", o ? "true" : "false");
+    }
     card.addEventListener("click", toggle);
     card.addEventListener("keydown", function (e) {
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
@@ -168,7 +179,8 @@
     "Volkswagen": ["Golf", "Jetta", "Passat", "Tiguan"],
     "Volvo": ["S60", "XC60", "XC90"]
   };
-  var PAGE = 6;
+  var PHONE = ((window.SITE || {}).contact || {}).phone || "";
+  var PAGE = Math.max(1, parseInt((SITE.catalog || {}).pageSize, 10) || 6);
 
   var form = document.getElementById("car-search");
   if (!form) return;
@@ -340,7 +352,7 @@
     inq.href = "#booking";
     inq.addEventListener("click", function () { inquire(c); dlg.close(); });
     var tel = el("a", "btn btn--black", "Обади се");
-    tel.href = "tel:0897502285";
+    tel.href = "tel:" + String(PHONE).replace(/[^\d+]/g, "");
     acts.appendChild(inq); acts.appendChild(tel);
     body.appendChild(acts);
     if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
@@ -428,4 +440,24 @@
       if (msg) msg.value = "Интересувам се от: " + a.getAttribute("data-model") + ". Година и бюджет: ";
     });
   });
+})();
+
+/* Мобилно меню (хамбургер) */
+(function () {
+  "use strict";
+  var header = document.querySelector(".header");
+  var btn = document.getElementById("nav-toggle");
+  var nav = document.getElementById("site-nav");
+  if (!header || !btn || !nav) return;
+
+  function set(open) {
+    header.classList.toggle("is-open", open);
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    btn.setAttribute("aria-label", open ? "Затвори менюто" : "Меню");
+  }
+  btn.addEventListener("click", function () { set(!header.classList.contains("is-open")); });
+  nav.addEventListener("click", function (e) { if (e.target.closest("a")) set(false); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && header.classList.contains("is-open")) { set(false); btn.focus(); } });
+  document.addEventListener("click", function (e) { if (header.classList.contains("is-open") && !header.contains(e.target)) set(false); });
+  window.addEventListener("resize", function () { if (window.innerWidth > 960) set(false); });
 })();

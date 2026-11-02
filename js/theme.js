@@ -1,13 +1,15 @@
-/* Тема: жълто-черна (ден) и черно-жълта (нощ).
+/* Тема: светла (ден) и тъмна (нощ), златен акцент.
    Автоматично: нощ от 20:00 до 06:00 по българско време (Europe/Sofia).
    Ръчният избор важи до следващата смяна ден/нощ, после пак е автоматично. */
 (function () {
   "use strict";
 
   var TZ = "Europe/Sofia";
-  var NIGHT_FROM = 20;   // от 20:00
-  var NIGHT_TO = 6;      // до 06:00
-  var KEY = "nm-theme";
+  var T = (window.SITE && window.SITE.theme) || {};
+  var NIGHT_FROM = isFinite(T.nightFrom) ? +T.nightFrom : 20;   // от 20:00
+  var NIGHT_TO = isFinite(T.nightTo) ? +T.nightTo : 6;          // до 06:00
+  var MODE = T.mode === "day" || T.mode === "night" ? T.mode : "auto";   // зададен от админ панела
+  var KEY = "bm-theme";
   var root = document.documentElement;
 
   function sofiaHour() {
@@ -21,8 +23,11 @@
   }
 
   function autoTheme() {
+    if (MODE !== "auto") return MODE;
     var h = sofiaHour();
-    return (h >= NIGHT_FROM || h < NIGHT_TO) ? "night" : "day";
+    // интервалът може да минава през полунощ (20 → 6) или да е в рамките на деня
+    var night = NIGHT_FROM > NIGHT_TO ? (h >= NIGHT_FROM || h < NIGHT_TO) : (h >= NIGHT_FROM && h < NIGHT_TO);
+    return night ? "night" : "day";
   }
 
   function override() {
@@ -38,7 +43,7 @@
   function apply(theme) {
     root.setAttribute("data-theme", theme);
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", theme === "night" ? "#1E2022" : "#0F2C59");
+    if (meta) meta.setAttribute("content", theme === "night" ? "#1E2022" : "#F8F9FA");
     var btn = document.getElementById("theme-toggle");
     if (btn) btn.setAttribute("aria-pressed", theme === "night" ? "true" : "false");
   }
