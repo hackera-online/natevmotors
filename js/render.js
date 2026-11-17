@@ -97,11 +97,9 @@
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var saveData = navigator.connection && navigator.connection.saveData;
   if (iframe) {
-    if (F.heroVideo !== false && (S.hero || {}).videoId && !reduce && !saveData) {
-      var id = encodeURIComponent(S.hero.videoId);
-      iframe.src = "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1&mute=1&loop=1&playlist=" + id +
-        "&controls=0&disablekb=1&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3";
-    } else { var hv = iframe.closest(".hero__video"); if (hv) hv.remove(); }
+    if (F.heroVideo !== false && !reduce && !saveData) {
+      var pr = iframe.play && iframe.play(); if (pr && pr.catch) pr.catch(function () {});
+    } else { iframe.pause && iframe.pause(); iframe.removeAttribute("autoplay"); }
   }
   if (F.themeToggle === false) hide($("#theme-toggle"));
   if (F.mobileBar === false) { var mb = $(".mobile-sticky-bar"); if (mb) mb.remove(); document.documentElement.classList.add("no-mobile-bar"); }

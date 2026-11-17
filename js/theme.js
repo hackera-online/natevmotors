@@ -43,7 +43,7 @@
   function apply(theme) {
     root.setAttribute("data-theme", theme);
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", theme === "night" ? "#1E2022" : "#F8F9FA");
+    if (meta) meta.setAttribute("content", theme === "night" ? "#07131D" : "#F3F7FB");
     var btn = document.getElementById("theme-toggle");
     if (btn) btn.setAttribute("aria-pressed", theme === "night" ? "true" : "false");
   }

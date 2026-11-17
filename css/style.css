@@ -237,14 +237,14 @@ a { color: inherit; }
 .hero--video .wrap { position: relative; z-index: 2; }
 .hero__grid--single { grid-template-columns: minmax(0, 46rem); }
 .hero__video { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
-.hero__video::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,.55) 55%, rgba(0,0,0,.35) 100%); }
-.hero__video iframe { position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-height: 100%; min-width: 177.78vh; transform: translate(-50%, -50%); border: 0; pointer-events: none; }
+.hero__video::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(2,11,19,.86) 0%, rgba(2,11,19,.55) 55%, rgba(2,11,19,.25) 100%); }
+.hero__video iframe, .hero__video video { position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; object-fit: cover; transform: translate(-50%, -50%); border: 0; pointer-events: none; }
 .hero--video .badge { background: var(--yellow); color: #000; }
 .hero--video .checks li { border-color: rgba(255,255,255,.6); }
 .hero--video .checks li::before { background: var(--yellow); }
 .hero--video .btn--black { background: #000; color: var(--yellow); border-color: #fff; box-shadow: 0 16px 36px -16px rgba(20,12,0,.45); }
 :root[data-theme="night"] .hero--video .checks li { border-color: var(--yellow); }
-@media (prefers-reduced-motion: reduce) { .hero__video iframe { display: none; } }
+@media (prefers-reduced-motion: reduce) { .hero__video video { display: none; } .hero__video { background: url(../hero-poster.jpg) center/cover; } }
 
 /* ===== ТЪРСАЧКА ЗА АВТОМОБИЛ ===== */
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -285,7 +285,7 @@ a { color: inherit; }
 .footer__social a:hover { color: var(--yellow); text-decoration: none; }
 .footer__social svg { width: 100%; height: 100%; }
 .footer__note { margin: 1rem 0 0; color: #a9a9a9; font-size: .85rem; max-width: 22ch; }
-.footer__bottom { background: #101214; padding-block: 1.25rem; text-align: center; }
+.footer__bottom { background: #030a10; padding-block: 1.25rem; text-align: center; }
 .footer__legal { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 1.5rem; margin-bottom: .75rem; }
 .footer__copy { margin: 0 auto; max-width: none; font-size: .8rem; color: #9a9a9a; }
 @media (max-width: 1100px) { .footer__top { grid-template-columns: repeat(3, minmax(0, 1fr)); } .footer__models-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
@@ -352,21 +352,21 @@ h2 { position: relative; }
 .section__head p { font-weight: 500; }
 
 /* ленти и хедър */
-.emergency { background: var(--color-graphite-deep); color: var(--color-gold-light); border-bottom: 1px solid rgba(212, 175, 55, .35); }
+.emergency { background: var(--color-graphite-deep); color: var(--color-gold-light); border-bottom: 1px solid rgba(63, 160, 255, .35); }
 .emergency__phone { color: var(--color-gold-light); letter-spacing: .04em; }
 .dot { border-color: var(--color-graphite-deep); box-shadow: 0 0 0 3px rgba(47, 143, 91, .25); }
 .header { border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); }
 
 /* лого */
 .logo { border: 1px solid var(--yellow); padding: .5rem 1.15rem; border-radius: 2px; position: relative; }
-.logo::after { content: ""; position: absolute; inset: 3px; border: 1px solid rgba(212, 175, 55, .35); pointer-events: none; }
+.logo::after { content: ""; position: absolute; inset: 3px; border: 1px solid rgba(63, 160, 255, .35); pointer-events: none; }
 .logo__name { font-family: var(--font-head); font-weight: 600; font-size: 1.3rem; letter-spacing: .22em; }
 
 /* бутони */
-.btn { background: var(--gold-grad); color: var(--on-accent); border: 1px solid var(--color-gold-hover); font-weight: 800; font-size: .95rem; letter-spacing: .08em; text-transform: uppercase; box-shadow: 0 12px 26px -14px rgba(150, 115, 20, .7); transition: filter .2s, transform .2s, box-shadow .2s; }
-.btn:hover { background: var(--gold-grad); filter: brightness(1.08); transform: translateY(-1px); box-shadow: 0 16px 30px -14px rgba(150, 115, 20, .8); }
-.btn:active { transform: translateY(0); box-shadow: 0 6px 14px -8px rgba(150, 115, 20, .7); }
-.btn--black { background: var(--color-graphite); color: var(--color-gold-light); border: 1px solid rgba(212, 175, 55, .55); box-shadow: 0 12px 26px -14px rgba(0, 0, 0, .7); }
+.btn { background: var(--gold-grad); color: var(--on-accent); border: 1px solid var(--color-gold-hover); font-weight: 800; font-size: .95rem; letter-spacing: .08em; text-transform: uppercase; box-shadow: 0 12px 26px -14px rgba(20, 90, 170, .7); transition: filter .2s, transform .2s, box-shadow .2s; }
+.btn:hover { background: var(--gold-grad); filter: brightness(1.08); transform: translateY(-1px); box-shadow: 0 16px 30px -14px rgba(20, 90, 170, .8); }
+.btn:active { transform: translateY(0); box-shadow: 0 6px 14px -8px rgba(20, 90, 170, .7); }
+.btn--black { background: var(--color-graphite); color: var(--color-gold-light); border: 1px solid rgba(63, 160, 255, .55); box-shadow: 0 12px 26px -14px rgba(0, 0, 0, .7); }
 .btn--black:hover { background: var(--color-navy); filter: none; }
 .btn--ghost { background: transparent; color: inherit; border: 1px solid currentColor; box-shadow: none; }
 .btn--ghost:hover { background: var(--invert-bg); color: var(--invert-fg); filter: none; }
@@ -379,11 +379,11 @@ h2 { position: relative; }
 .hero--video h1 { text-shadow: 0 2px 30px rgba(0, 0, 0, .6); }
 
 /* търсачка */
-.search__panel { background: linear-gradient(180deg, #232629, #16181a); border: 1px solid rgba(212, 175, 55, .5); border-radius: var(--r-card); box-shadow: 0 30px 60px -28px rgba(0, 0, 0, .75); }
+.search__panel { background: linear-gradient(180deg, #0c1822, #050d15); border: 1px solid rgba(63, 160, 255, .5); border-radius: var(--r-card); box-shadow: 0 30px 60px -28px rgba(0, 0, 0, .75); }
 .search__title { color: var(--color-bg); }
 .search__grid select, .search__grid input { background: var(--color-graphite-deep); border: 1px solid var(--color-navy-line); border-radius: 4px; color: var(--color-bg); }
 .search__grid select:focus, .search__grid input:focus { outline: 1px solid var(--yellow); outline-offset: 1px; border-color: var(--yellow); }
-.search__btn { background: var(--gold-grad); border-radius: 2px; text-transform: uppercase; letter-spacing: .12em; font-size: .95rem; font-weight: 800; box-shadow: 0 14px 28px -14px rgba(212, 175, 55, .7); }
+.search__btn { background: var(--gold-grad); border-radius: 2px; text-transform: uppercase; letter-spacing: .12em; font-size: .95rem; font-weight: 800; box-shadow: 0 14px 28px -14px rgba(63, 160, 255, .7); }
 .search__btn:hover { background: var(--gold-grad); filter: brightness(1.1); }
 .search__hint { color: #9AA3AE; }
 
@@ -392,13 +392,13 @@ h2 { position: relative; }
 .service { border-left: 2px solid var(--yellow); border-radius: var(--r-card); background: var(--surface); box-shadow: 0 18px 40px -26px var(--shadow); transition: transform .25s, box-shadow .25s; }
 .service:hover { transform: translateY(-3px); box-shadow: 0 26px 50px -26px var(--shadow); }
 .service .icon--lg { color: var(--yellow); }
-.service--hot { background: linear-gradient(160deg, var(--color-navy), var(--color-graphite-deep)); color: var(--color-bg); border-color: rgba(212, 175, 55, .5); }
+.service--hot { background: linear-gradient(160deg, var(--color-navy), var(--color-graphite-deep)); color: var(--color-bg); border-color: rgba(63, 160, 255, .5); }
 .service--hot p { color: #C3CAD3; }
 .service--hot .icon, :root[data-theme="night"] .service--hot .icon { color: var(--yellow); }
 .service--hot .btn--black { background: var(--gold-grad); color: var(--color-graphite); border-color: var(--color-gold-hover); }
 .car { border: 1px solid var(--line); box-shadow: var(--shadow-subtle); transition: transform var(--transition), box-shadow var(--transition); }
 .car:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-.car__pic { background: radial-gradient(circle at 50% 40%, #163B73, var(--color-graphite-deep) 70%); }
+.car__pic { background: radial-gradient(circle at 50% 40%, #0B2A4D, var(--color-graphite-deep) 70%); }
 .car__icon { color: var(--yellow); }
 .car__title { font-family: var(--font-head); font-size: 1.3rem; }
 .car__price { font-family: var(--font-head); font-size: 1.45rem; color: var(--fg); }
@@ -406,7 +406,7 @@ h2 { position: relative; }
 .car__status--in { background: var(--green); color: #fff; }
 .car__status--way { background: var(--gold-grad); color: var(--color-graphite); }
 .car__btns .btn, .car__foot .btn { font-size: .8rem; padding: .7rem 1rem; }
-.cardlg { box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .8); border: 1px solid rgba(212, 175, 55, .45); }
+.cardlg { box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .8); border: 1px solid rgba(63, 160, 255, .45); }
 .cardlg__x { border: 1px solid var(--color-gold-hover); background: var(--gold-grad); }
 .cardlg__title, .cardlg__price { font-family: var(--font-head); }
 .cardlg__specs dt { text-transform: uppercase; letter-spacing: .06em; font-size: .75rem; align-self: center; }
@@ -426,8 +426,8 @@ input, select, textarea { font-family: inherit; }
 .footer a { color: #C3CAD3; }
 .footer a:hover { color: var(--color-gold-light); }
 .footer h3, .footer h4, .footer h4 a { color: var(--color-bg); font-family: var(--font-head); font-weight: 600; letter-spacing: .02em; }
-.footer__bottom { background: #101214; border-top: 1px solid rgba(212, 175, 55, .2); }
-.footer__models { border-top-color: rgba(212, 175, 55, .2); }
+.footer__bottom { background: #030a10; border-top: 1px solid rgba(63, 160, 255, .2); }
+.footer__models { border-top-color: rgba(63, 160, 255, .2); }
 .services { gap: 1.5rem; border: 0; }
 .service { border-top: 1px solid var(--line); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 
@@ -448,19 +448,19 @@ input, select, textarea { font-family: inherit; }
 
 .logo__name { text-transform: none; letter-spacing: .14em; font-size: 1.35rem; }
 
-.emergency { background: var(--color-navy); color: var(--color-bg); border-bottom: 1px solid rgba(212, 175, 55, .45); }
+.emergency { background: var(--color-navy); color: var(--color-bg); border-bottom: 1px solid rgba(63, 160, 255, .45); }
 .emergency__phone { color: var(--color-gold-light); }
-.btn--black { background: var(--color-navy); color: var(--color-bg); border: 1px solid var(--color-navy); box-shadow: 0 12px 26px -14px rgba(15, 44, 89, .8); }
+.btn--black { background: var(--color-navy); color: var(--color-bg); border: 1px solid var(--color-navy); box-shadow: 0 12px 26px -14px rgba(8, 36, 72, .8); }
 .btn--black:hover { background: var(--color-navy-hover); border-color: var(--color-navy-hover); }
 :root[data-theme="night"] .btn--black { border-color: var(--color-navy-line); }
-.hero--video .btn--black { background: rgba(15, 44, 89, .85); color: var(--color-bg); border: 1px solid rgba(212, 175, 55, .6); box-shadow: none; }
+.hero--video .btn--black { background: rgba(8, 36, 72, .85); color: var(--color-bg); border: 1px solid rgba(63, 160, 255, .6); box-shadow: none; }
 .service .icon--lg { color: var(--color-navy); }
 :root[data-theme="night"] .service .icon--lg { color: var(--color-gold); }
 .service--hot { background: linear-gradient(160deg, var(--color-navy), var(--color-graphite)); }
 .service--hot .icon, :root[data-theme="night"] .service--hot .icon { color: var(--color-gold-light); }
-.search__panel { background: linear-gradient(180deg, var(--color-graphite), #16181a); border: 1px solid rgba(212, 175, 55, .5); }
-.search__grid select, .search__grid input { background: #14181d; border-color: var(--color-navy-line); }
-.car__pic { background: radial-gradient(circle at 50% 40%, #163B73, var(--color-graphite-deep) 72%); }
+.search__panel { background: linear-gradient(180deg, var(--color-graphite), #050d15); border: 1px solid rgba(63, 160, 255, .5); }
+.search__grid select, .search__grid input { background: #06111b; border-color: var(--color-navy-line); }
+.car__pic { background: radial-gradient(circle at 50% 40%, #0B2A4D, var(--color-graphite-deep) 72%); }
 .car__price { color: var(--fg); }
 :root:not([data-theme="night"]) .results__sort select { background: #fff; }
 .footer { background: var(--color-graphite); }
@@ -473,7 +473,7 @@ input, select, textarea { font-family: inherit; }
 .cardlg__desc { line-height: 1.55; }
 
 /* Статус „По поръчка“ – със стила на златния бутон „Запитване“, но не е бутон */
-.car__status--order { background: var(--gold-grad); color: var(--on-accent); border: 1px solid var(--color-gold-hover); border-radius: 2px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; box-shadow: 0 12px 26px -14px rgba(150, 115, 20, .7); cursor: default; pointer-events: none; user-select: none; }
+.car__status--order { background: var(--gold-grad); color: var(--on-accent); border: 1px solid var(--color-gold-hover); border-radius: 2px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; box-shadow: 0 12px 26px -14px rgba(20, 90, 170, .7); cursor: default; pointer-events: none; user-select: none; }
 
 /* Лого на Viber в бутона */
 .btn--viber .viber-logo { display: block; height: 2.4rem; width: auto; max-width: 100%; }
@@ -492,13 +492,13 @@ input, select, textarea { font-family: inherit; }
 .logo .logo__name { font-family: var(--font-logo); font-weight: 700; font-size: 1em; letter-spacing: .01em; text-transform: uppercase; color: var(--fg); line-height: .95; white-space: nowrap; }
 .logo__name b { font-weight: 700; color: var(--yellow-press); }
 .logo__grp { font-family: var(--font-logo); font-weight: 600; font-size: .78rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); padding-bottom: .12rem; }
-.logo__bar { display: block; background: var(--color-graphite); color: var(--color-bg); font-family: var(--font); font-weight: 700; font-size: .29em; letter-spacing: .12em; text-transform: uppercase; text-align: center; padding: .55em .6em; width: 0; min-width: 100%; box-sizing: border-box; overflow: visible; border: 1px solid rgba(212,175,55,.6); border-radius: 2px; white-space: nowrap; }
+.logo__bar { display: block; background: var(--color-graphite); color: var(--color-bg); font-family: var(--font); font-weight: 700; font-size: .29em; letter-spacing: .12em; text-transform: uppercase; text-align: center; padding: .55em .6em; width: 0; min-width: 100%; box-sizing: border-box; overflow: visible; border: 1px solid rgba(63,160,255,.6); border-radius: 2px; white-space: nowrap; }
 .logo--img img { height: 3.2rem; width: auto; max-width: min(15rem, 60vw); object-fit: contain; }
 :root { --font-logo: "Oswald", "Arial Narrow", "Roboto Condensed", Impact, sans-serif; }
 :root[data-theme="night"] .logo__name b { color: var(--yellow); }
 
 /* лента „чернова“ – вижда се само на администратора */
-.draft-bar { position: fixed; left: 50%; bottom: 1rem; transform: translateX(-50%); z-index: 90; display: flex; align-items: center; gap: .9rem; padding: .55rem .9rem; background: var(--color-graphite); color: var(--color-bg); border: 1px solid rgba(212,175,55,.6); border-radius: 999px; font-size: .8rem; box-shadow: 0 12px 30px -10px rgba(0,0,0,.6); max-width: calc(100% - 1.5rem); }
+.draft-bar { position: fixed; left: 50%; bottom: 1rem; transform: translateX(-50%); z-index: 90; display: flex; align-items: center; gap: .9rem; padding: .55rem .9rem; background: var(--color-graphite); color: var(--color-bg); border: 1px solid rgba(63,160,255,.6); border-radius: 999px; font-size: .8rem; box-shadow: 0 12px 30px -10px rgba(0,0,0,.6); max-width: calc(100% - 1.5rem); }
 .draft-bar a, .draft-bar button { font: inherit; font-weight: 800; color: var(--color-gold-light); background: none; border: 0; padding: .35rem .2rem; cursor: pointer; text-decoration: underline; }
 
 /* =====================================================================
@@ -619,3 +619,17 @@ h1, h2, h3, .car__title, .service h3 { overflow-wrap: anywhere; hyphens: auto; }
   .hero__actions { display: none; }
   html.no-mobile-bar .hero__actions { display: flex; }
 }
+
+/* ===== ПАЛИТРА ОТ ВИДЕОТО (BRABUS G-Class): нощно черно, ледено синьо от фаровете, червено-оранжево от светлините ===== */
+.hero--video { background: var(--color-graphite-deep); }
+.hero--video .badge { background: linear-gradient(135deg, #FF6A3D 0%, var(--color-ember) 55%, var(--color-ember-deep) 100%); color: #fff; box-shadow: 0 0 24px -4px rgba(255, 59, 47, .6); }
+.hero--video h1 { text-shadow: 0 0 40px rgba(63, 160, 255, .35), 0 2px 30px rgba(0, 0, 0, .7); }
+.hero--video .checks li::before { background: var(--color-ember); box-shadow: 0 0 10px rgba(255, 59, 47, .7); }
+.hero--video .btn:not(.btn--black):not(.btn--ghost) { box-shadow: 0 0 28px -6px rgba(63, 160, 255, .65); }
+.car__status--way, .country-category__flag { background: linear-gradient(135deg, #FF6A3D, var(--color-ember)); color: #fff; }
+.service--hot { background: linear-gradient(160deg, #0A2A4A, var(--color-graphite-deep)); border-color: rgba(255, 59, 47, .55); }
+.service--hot .icon, :root[data-theme="night"] .service--hot .icon { color: #FF6A3D; }
+.nav a:hover { color: var(--color-ember); border-bottom-color: var(--color-ember); }
+.emergency__phone { color: #FF6A3D; }
+.section__head h2::after { background: linear-gradient(90deg, var(--color-gold), var(--color-ember)); }
+::selection { background: var(--color-gold); color: var(--color-graphite-deep); }
